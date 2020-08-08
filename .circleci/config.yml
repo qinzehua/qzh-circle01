@@ -6,6 +6,8 @@ jobs:
     branches:
       only:
         - qzh/master
+      ignore:
+        - gh-pages
     steps:
       - add_ssh_keys:
           fingerprints:
