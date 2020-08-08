@@ -20,7 +20,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          keys: qzh_save_dependencies
+          key: qzh_save_dependencies
       - run:
           name: qzh-build
           command: yarn build
