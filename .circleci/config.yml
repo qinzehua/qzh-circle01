@@ -1,8 +1,21 @@
 varsion: 2
 jobs:
-  build:
+  build-vue-project:
     docker:
       - image: circleci/node:10
+    branches:
+      only:
+        - master
     steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "77:3b:2f:4b:88:df:1b:00:63:a2:7e:dd:d8:37:c9:c6"
+      - checkout
       - run: echo 'A first hello'
       - run: npm -v
+      - run:
+        name: Install
+        command: yarn install
+      - run:
+        name: Build
+        command: yarn build
