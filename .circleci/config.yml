@@ -1,0 +1,35 @@
+varsion: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    branches:
+      only:
+        - qzh/master
+      ignore:
+        - gh-pages
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "d9:f6:5c:3a:0f:af:48:c9:e5:b5:a7:3c:2b:3b:b5:88"
+      - checkout
+      - restore_cache:
+          keys: 
+            - qzh_save_dependencies
+      - run:
+          name: qzh-install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: qzh_save_dependencies
+      - run:
+          name: qzh-build
+          command: yarn build
+      - run:
+          name: qzh Prepare shell commands
+          #shell chmod +x 赋予执行权限
+          command: chmod +x ./scripts/deploy.sh
+      - run:
+          name: Run Deploy to GitHub pages
+          command: ./scripts/deploy.sh
