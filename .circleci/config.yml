@@ -8,8 +8,8 @@ jobs:
         - qzh/master
     steps:
       - add_ssh_keys:
-        fingerprints:
-          - "d9:f6:5c:3a:0f:af:48:c9:e5:b5:a7:3c:2b:3b:b5:88"
+          fingerprints:
+            - "d9:f6:5c:3a:0f:af:48:c9:e5:b5:a7:3c:2b:3b:b5:88"
       - checkout
       - run: echo 'A first hello'
       - run: npm -v
